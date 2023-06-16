@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Q1:Create 2 objects - parent and child. 
+        Attach methods to parent and use those methods in child object using parents prototype</h1>
+    <pre>
+        // Parent object
+function Parent(name) {
+  this.name = name;
+}
+
+Parent.prototype.greet = function() {
+  console.log(`Hello, my name is ${this.name}.`);
+};
+
+// Child object
+function Child(name, age) {
+  Parent.call(this, name);
+  this.age = age;
+}
+
+Child.prototype = Object.create(Parent.prototype);
+Child.prototype.constructor = Child;
+
+// Creating instances of parent and child objects
+const parent = new Parent("John");
+const child = new Child("Jane", 10);
+
+// Using the methods from parent's prototype in child object
+parent.greet(); 
+child.greet(); 
+
+output:
+Hello, my name is John.
+Hello, my name is Jane.
+    </pre>
+    <h1>Q2:Write code to explain prototype chaining</h1>
+    <pre>
+        const grandfather={
+            say Hello : function(){
+                console.log("HEY HI")
+            }
+        }
+    const Father = object.create(grand father);
+    Father.Hello = function(){
+        console.log("Say hi")
+    }
+    const You = object.create(Father);
+    You.Hi = function(){
+        console.log("HI...")
+    }
+    You.say Hello();
+    You.Hello();
+    You.hi()
+
+    output:
+    HEY HI
+    Say hi
+    HI...
+    </pre>
+<h1>Q3:Add a method to calculate sum of all elements in Array in array's protype, use that method 
+    to calculate sum for multiple arrays</h1>
+<pre>
+    Array.prototype.calculateSum = function() {
+        let sum = 0;
+        for (let i = 0; i < this.length; i++) {
+            sum += this[i];
+          }
+          return sum;
+        } 
+        const array1 = [11, 22, 33, 44, 55];
+        const array2 = [12, 23, 32, 41, 54]; 
+    const sum1 = array1.calculateSum();
+    const sum2 = array2.calculateSum();
+    console.log(sum1);
+    console.log(sum2);
+    
+    output:
+    165
+    162
+</pre>
+<h1>Q4:Write a JavaScript function to retrieve all the names of object's own and inherited properties.</h1>
+  <pre>
+    // Example object
+const person = {
+  name: "John",
+  age: 30
+};
+
+// Inherited object
+const employee = Object.create(person);
+employee.salary = 5000;
+
+// Retrieving all property names
+const propertyNames = getAllPropertyNames(employee);
+
+console.log(propertyNames);
+
+  </pre>
+</body>
+</html>
